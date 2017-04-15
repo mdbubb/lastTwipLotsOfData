@@ -27,7 +27,6 @@ public class Main {
             try {
 
                 left = raw.nextLine().replaceAll("[^0123456789.+]", "");
-
                 char p[] = left.toCharArray();
                 try {
                     id = "";
@@ -50,7 +49,7 @@ public class Main {
                     }
 
 
-                   //System.out.print(t);
+                    System.out.print(t + " ");
                     System.out.println(s);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
 
@@ -71,29 +70,52 @@ public class Main {
                     for (int i = 0; i < b.length; i++) {
                         c[i] = Double.parseDouble(b[i]);
 
-                        if (c[i] == 222) {
-                            //   c = ArrayUtils.removeElement(c, 222);
+                        if (c[i] == 222.0) {
+                            c[i] = -1.0;
                         } else if (c[i] == 0.511) {
                             c[i] = 0.5;
                         } else if (c[i] == 11.0) {
                             c[i] = 1.0;
-                            numoferrors = 1;
+                            numoferrors += 1;
                         } else if (c[i] == 14.0) {
                             c[i] = 1.0;
-                            numoferrors = 4;
+                            numoferrors += 4;
                         } else if (c[i] == 10.0) {
                             c[i] = 1.0;
 
+                        } else if (c[i] == 0.51) {
+                            c[i] = 0.5;
+                            numoferrors += 1;
+                        } else if (c[i] == 12.0) {
+                            c[i] = 1.0;
+                            numoferrors += 2;
+
+                        }else if (c[i] == 0.53) {
+                            c[i] = 0.5;
+
                         }
-                        //System.out.println(c[i]);
+                        else if (c[i] == 17.0) {
+                            c[i] = 1.0;
+                            numoferrors += 7;
+                        }
+
+
+
+
+                        // System.out.print(c[i]+"\t");
                         //System.out.println(numoferrors);
                         p += c[i];
 
 
+
+
                     }
-                    double sub = numoferrors*.25;
-                    System.out.print("Total points: " );
-                    System.out.println(p - sub+ " \n");
+                    double sub = numoferrors * .25;
+                    if(t==6){
+                        sub-=.25;
+                    }
+                  System.out.print("Total points: ");
+                    System.out.println(p - sub + " \n");
 
 
                 } catch (InputMismatchException d) {
