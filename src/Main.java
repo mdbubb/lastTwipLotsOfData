@@ -1,3 +1,4 @@
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.xerces.impl.xpath.regex.Match;
 
 import java.awt.geom.Arc2D;
@@ -20,6 +21,7 @@ public class Main {
     public static String b[];
 
     public static void main(String[] args) throws IOException {
+        int t = 1;
         Scanner raw = new Scanner(new File("raw"));
         while (raw.hasNext()) {
             try {
@@ -46,39 +48,57 @@ public class Main {
                         s = d.toString();
 
                     }
-                   // s = s.replaceAll("\\+", " ");
+
+
+                   //System.out.print(t);
                     System.out.println(s);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
-                    //System.out.println(left);
+
+
+                    t++;
                 } catch (IndexOutOfBoundsException e) {
-                    raw.nextLine();
+                    raw.next();
                 }
             } catch (NoSuchElementException e) {
                 System.out.println();
             }
 
+            double p = 0;
+            double numoferrors = 0;
             try {
                 try {
                     double[] c = new double[b.length];
                     for (int i = 0; i < b.length; i++) {
                         c[i] = Double.parseDouble(b[i]);
-                      if (c[i]==0.5||c[i]==1.0){
-                          System.out.println(c[i]);
-                      }
-                      else{
-                          System.out.println();
 
-                          System.out.println(c[i]);
-                          System.out.println();
-                      }
+                        if (c[i] == 222) {
+                            //   c = ArrayUtils.removeElement(c, 222);
+                        } else if (c[i] == 0.511) {
+                            c[i] = 0.5;
+                        } else if (c[i] == 11.0) {
+                            c[i] = 1.0;
+                            numoferrors = 1;
+                        } else if (c[i] == 14.0) {
+                            c[i] = 1.0;
+                            numoferrors = 4;
+                        } else if (c[i] == 10.0) {
+                            c[i] = 1.0;
+
+                        }
+                        //System.out.println(c[i]);
+                        //System.out.println(numoferrors);
+                        p += c[i];
 
 
                     }
-                }
-                catch (InputMismatchException d){
+                    double sub = numoferrors*.25;
+                    System.out.print("Total points: " );
+                    System.out.println(p - sub+ " \n");
+
+
+                } catch (InputMismatchException d) {
                     raw.nextDouble();
-                }
-                catch (NumberFormatException a){
+                } catch (NumberFormatException l) {
 
                     raw.next();
                 }
