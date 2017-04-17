@@ -52,9 +52,9 @@ public class Main {
                     System.out.print(t + " ");
                     System.out.println(s);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
-
-
                     t++;
+
+
                 } catch (IndexOutOfBoundsException e) {
                     raw.next();
                 }
@@ -68,6 +68,18 @@ public class Main {
                 try {
                     double[] c = new double[b.length];
                     for (int i = 0; i < b.length; i++) {
+                       if(b[i].endsWith(".")){
+
+                            String a = b[i].substring(b[i].length()-1,b[i].length());
+                           b[i] = b[i].replace(a,"");
+                           // System.out.println();
+                            //System.out.println();
+                            //System.out.println(b[i]);
+
+                        }
+                        if (b[i].equals(".5.1")){
+                            b[i] = ".5";
+                        }
                         c[i] = Double.parseDouble(b[i]);
 
                         if (c[i] == 222.0) {
@@ -90,11 +102,10 @@ public class Main {
                             c[i] = 1.0;
                             numoferrors += 2;
 
-                        }else if (c[i] == 0.53) {
+                        } else if (c[i] == 0.53) {
                             c[i] = 0.5;
 
-                        }
-                        else if (c[i] == 17.0) {
+                        } else if (c[i] == 17.0) {
                             c[i] = 1.0;
                             numoferrors += 7;
                         }
@@ -102,19 +113,18 @@ public class Main {
 
 
 
-                        // System.out.print(c[i]+"\t");
-                        //System.out.println(numoferrors);
+                       // System.out.println(c[i]+"\t");
+                       // System.out.println(numoferrors);
                         p += c[i];
-
-
 
 
                     }
                     double sub = numoferrors * .25;
-                    if(t==6){
-                        sub-=.25;
+                    if (t == 6) {
+                        sub -= .25;
                     }
-                  System.out.print("Total points: ");
+                    //doesnt print out for 9,16,16,18,20,38
+                    System.out.print("Total points: ");
                     System.out.println(p - sub + " \n");
 
 
