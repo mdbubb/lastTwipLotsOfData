@@ -150,7 +150,6 @@ public class Main {
 
                     }
                     double sub = numoferrors * .25;
-
                     if (t == 6) {
                         sub -= .25;
                     } else if (t == 10) {
