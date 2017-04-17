@@ -19,9 +19,10 @@ public class Main {
     public static String id;
     public static String s;
     public static String b[];
+    public static int t = 0;
 
     public static void main(String[] args) throws IOException {
-        int t = 1;
+
         Scanner raw = new Scanner(new File("raw"));
         while (raw.hasNext()) {
             try {
@@ -49,8 +50,8 @@ public class Main {
                     }
 
 
-                    System.out.print(t + " ");
-                    System.out.println(s);
+                    //  System.out.print(t + " ");
+                    //System.out.println(s);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
                     t++;
 
@@ -68,22 +69,20 @@ public class Main {
                 try {
                     double[] c = new double[b.length];
                     for (int i = 0; i < b.length; i++) {
-                       if(b[i].endsWith(".")){
+                        if (b[i].endsWith(".")) {
 
-                            String a = b[i].substring(b[i].length()-1,b[i].length());
-                           b[i] = b[i].replace(a,"");
-                           // System.out.println();
+                            String a = b[i].substring(b[i].length() - 1, b[i].length());
+                            b[i] = b[i].replace(a, "");
+                            // System.out.println();
                             //System.out.println();
                             //System.out.println(b[i]);
 
                         }
-                        if (b[i].equals(".5.1")||b[i].equals(".5.0")){
+                        if (b[i].equals(".5.1") || b[i].equals(".5.0")) {
                             b[i] = ".5";
-                        }
-                        else if (b[i].equals("1.")){
+                        } else if (b[i].equals("1.")) {
                             b[i] = "1";
-                        }
-                        else if(b[i].equals(".511.51")){
+                        } else if (b[i].equals(".511.51")) {
                             b[i] = ".5";
                         }
                         c[i] = Double.parseDouble(b[i]);
@@ -114,25 +113,59 @@ public class Main {
                         } else if (c[i] == 17.0) {
                             c[i] = 1.0;
                             numoferrors += 7;
+                        } else if (c[i] == 50.0) {
+                            c[i] = .5;
+
+                        } else if (c[i] == 132) {
+                            c[i] = 1.0;
+                            numoferrors += 3;
+                        } else if (c[i] == 1.1) {
+                            c[i] = 1.0;
+                            numoferrors += 1;
+                        } else if (c[i] == 0.54) {
+                            c[i] = 0.5;
+                            numoferrors += 4;
+                        } else if (c[i] == 15.0) {
+                            c[i] = 1.0;
+                            numoferrors += 5;
+                        } else if (c[i] == 5131.0) {
+                            c[i] = 0.5;
+                            numoferrors += 3;
+                        } else if (c[i] == 10.5) {
+                            c[i] = 1.0;
+                            numoferrors += .5;
                         }
+                       /* else if (c[i]==.5||c[i]==1.0){
+
+                        }
+                        else {
+                            System.out.println(c[i]);
+                        }*/
 
 
-
-
-                       // System.out.println(c[i]+"\t");
-                       // System.out.println(numoferrors);
+                        // System.out.println(c[i]+"\t");
+                        // System.out.println(numoferrors);
                         p += c[i];
 
 
                     }
                     double sub = numoferrors * .25;
+
                     if (t == 6) {
                         sub -= .25;
+                    } else if (t == 10) {
+                        sub += .25;
                     }
-                    //doesnt print out for 9,16,16,18,20,38
-                    System.out.print("Total points: ");
-                    System.out.println(p - sub + " \n");
+                    double total = p - sub;
+                    if (total == 0.0) {
+                        System.out.print("");
+                    } else {
 
+
+                        System.out.println(id);
+                        System.out.print("Total points: ");
+                        System.out.println(total + " \n");
+                    }
 
                 } catch (InputMismatchException d) {
                     raw.nextDouble();
