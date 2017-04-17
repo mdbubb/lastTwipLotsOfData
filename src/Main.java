@@ -77,7 +77,13 @@ public class Main {
                             //System.out.println(b[i]);
 
                         }
-                        if (b[i].equals(".5.1")){
+                        if (b[i].equals(".5.1")||b[i].equals(".5.0")){
+                            b[i] = ".5";
+                        }
+                        else if (b[i].equals("1.")){
+                            b[i] = "1";
+                        }
+                        else if(b[i].equals(".511.51")){
                             b[i] = ".5";
                         }
                         c[i] = Double.parseDouble(b[i]);
