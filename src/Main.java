@@ -1,14 +1,8 @@
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.xerces.impl.xpath.regex.Match;
 
-import java.awt.geom.Arc2D;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.regex.*;
 import java.util.stream.Stream;
 
 /**
@@ -55,9 +49,11 @@ public class Main {
 
                     }
 
-
-                    //  System.out.print(t + " ");
-                  //  System.out.println(s);
+                    String gt = s.substring(0,s.length()/2);
+                      System.out.print(t + " ");
+                    System.out.println(s);
+                    System.out.print(t + " ");
+                    System.out.println(gt);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
                     t++;
 
@@ -195,11 +191,11 @@ public class Main {
                     if (total == 0.0) {
                         System.out.print("");
                     } else {
-                        System.out.println(s.toString());
+                      //System.out.println(s.toString());
 
                        // System.out.println(id);
-                       //System.out.print("Total points: ");
-                     //   System.out.println(total + " \n");
+                       System.out.print("Total points: ");
+                        System.out.println(total + " \n");
 
                     }
 

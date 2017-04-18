@@ -38,29 +38,4 @@ public class secretNum {
 
 
 }
-        /*try {
-                try {
-                    double[] c = new double[b.length];
-                    for (int i = 0; i < b.length; i++) {
-                        c[i] = Double.parseDouble(b[i]);
 
-
-
-                    }
-                }
-                catch (InputMismatchException d){
-                    raw.nextDouble();
-                }
-                catch (NumberFormatException l){
-
-                    raw.next();
-                }
-
-            } catch (IndexOutOfBoundsException e) {
-                raw.nextLine();
-            }
-        }
-
-
-    }
-}*/
