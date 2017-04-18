@@ -20,6 +20,12 @@ public class Main {
     public static String s;
     public static String b[];
     public static int t = 0;
+    public static double total = 0.0;
+    public static String a = "";
+    public static double c[];
+    public static double p = 0.0;
+    public static double numoferrors = 0.0;
+    public static double sub;
 
     public static void main(String[] args) throws IOException {
 
@@ -51,7 +57,7 @@ public class Main {
 
 
                     //  System.out.print(t + " ");
-                    //System.out.println(s);
+                  //  System.out.println(s);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
                     t++;
 
@@ -63,15 +69,15 @@ public class Main {
                 System.out.println();
             }
 
-            double p = 0;
-            double numoferrors = 0;
+             p = 0;
+             numoferrors = 0;
             try {
                 try {
-                    double[] c = new double[b.length];
+                    c = new double[b.length];
                     for (int i = 0; i < b.length; i++) {
                         if (b[i].endsWith(".")) {
 
-                            String a = b[i].substring(b[i].length() - 1, b[i].length());
+                             a = b[i].substring(b[i].length() - 1, b[i].length());
                             b[i] = b[i].replace(a, "");
                             // System.out.println();
                             //System.out.println();
@@ -113,7 +119,7 @@ public class Main {
                         } else if (c[i] == 17.0) {
                             c[i] = 1.0;
                             numoferrors += 7;
-                        } else if (c[i] == 50.0) {
+                        } else if (c[i] == 50.0||c[i]==53.0||c[i]==5.0) {
                             c[i] = .5;
 
                         } else if (c[i] == 132) {
@@ -125,22 +131,51 @@ public class Main {
                         } else if (c[i] == 0.54) {
                             c[i] = 0.5;
                             numoferrors += 4;
-                        } else if (c[i] == 15.0) {
+                        } else if (c[i] == 51.0) {
+                            c[i] = 0.5;
+                            numoferrors += 1;
+                        }
+                        else if (c[i] == 0.52||c[i]==52.0) {
+                            c[i] = 0.5;
+                            numoferrors += 2;
+                        }
+                        else if (c[i] == 16.0) {
+                            c[i] = 1;
+                            numoferrors += 6;
+                        }
+                        else if (c[i] == 13.0) {
+                            c[i] = 1.0;
+                            numoferrors += 3;
+                        }
+                        else if (c[i] == 15.0) {
                             c[i] = 1.0;
                             numoferrors += 5;
                         } else if (c[i] == 5131.0) {
                             c[i] = 0.5;
                             numoferrors += 3;
-                        } else if (c[i] == 10.5) {
-                            c[i] = 1.0;
-                            numoferrors += .5;
                         }
-                       /* else if (c[i]==.5||c[i]==1.0){
+                        else if (c[i] == 10.5) {
+                            c[i] = 1.0;
+                            numoferrors+=0.5;
+                        }
+                        else if (c[i] == 122.0) {
+                            c[i] = 1.0;
+                            numoferrors += 4;
+                        }
+                        else if (c[i] == 112.0) {
+                            c[i] = 1.0;
+                            numoferrors += 1;
+                        }
+                        else if (c[i] == 0.5121) {
+                            c[i] = 0.5;
+                            numoferrors += 2;
+                        }
+                       else if (c[i]==.5||c[i]==1.0){
 
                         }
                         else {
                             System.out.println(c[i]);
-                        }*/
+                        }
 
 
                         // System.out.println(c[i]+"\t");
@@ -149,21 +184,23 @@ public class Main {
 
 
                     }
-                    double sub = numoferrors * .25;
+                     sub = numoferrors * .25;
                     if (t == 6) {
                         sub -= .25;
                     } else if (t == 10) {
                         sub += .25;
                     }
-                    double total = p - sub;
+                    total = p - sub;
+                   studentObjs s = new studentObjs(id, total);
                     if (total == 0.0) {
                         System.out.print("");
                     } else {
+                        System.out.println(s.toString());
 
+                       // System.out.println(id);
+                       //System.out.print("Total points: ");
+                     //   System.out.println(total + " \n");
 
-                        System.out.println(id);
-                        System.out.print("Total points: ");
-                        System.out.println(total + " \n");
                     }
 
                 } catch (InputMismatchException d) {
