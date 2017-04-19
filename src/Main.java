@@ -1,8 +1,10 @@
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.regex.*;
 import java.util.stream.Stream;
 
 /**
@@ -49,13 +51,11 @@ public class Main {
 
                     }
 
-                    String gt = s.substring(0,s.length()/2);
-                      System.out.print(t + " ");
-                    System.out.println(s);
-                    System.out.print(t + " ");
-                    System.out.println(gt);
+
+                    //  System.out.print(t + " ");
+                  //  System.out.println(s);
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
-                    t++;
+
 
 
                 } catch (IndexOutOfBoundsException e) {
@@ -180,22 +180,35 @@ public class Main {
 
 
                     }
-                     sub = numoferrors * .25;
-                    if (t == 6) {
-                        sub -= .25;
-                    } else if (t == 10) {
-                        sub += .25;
+
+                    if(t==4){
+                        numoferrors-=1;
+                    } else if (t == 8||t==15||t==26||t==37) {
+
+                        numoferrors+=1;
                     }
+                    else if (t==21){
+                        numoferrors+=3;
+                    } else if (t==38){
+                        numoferrors-=2;
+                    }
+                    else if (t==27||t==31||t==32||t==43||t==45){
+                        numoferrors-=1;
+                    }
+
+                     sub = numoferrors * .25;
+
+
                     total = p - sub;
                    studentObjs s = new studentObjs(id, total);
                     if (total == 0.0) {
                         System.out.print("");
                     } else {
-                      //System.out.println(s.toString());
+                        System.out.println(s.toString()+"  "+ t);
 
                        // System.out.println(id);
-                       System.out.print("Total points: ");
-                        System.out.println(total + " \n");
+                       //System.out.print("Total points: ");
+                     //   System.out.println(total + " \n");
 
                     }
 
@@ -204,7 +217,7 @@ public class Main {
                 } catch (NumberFormatException l) {
 
                     raw.next();
-                }
+                } t++;
 
             } catch (IndexOutOfBoundsException e) {
                 raw.nextLine();
