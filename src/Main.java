@@ -1,10 +1,13 @@
 
+import org.omg.CORBA.INTERNAL;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.*;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 /**
@@ -25,12 +28,60 @@ public class Main {
     public static double numoferrors = 0.0;
     public static double sub;
     public static Scanner raw;
-//
+
+    //
     public static void main(String[] args) throws IOException {
+        ArrayList<String> id1= new ArrayList<>();
+        ArrayList<String> errornum = new ArrayList<>();
+        ArrayList<String> fr2 = new ArrayList<>();
+        ArrayList<String> fr1 = new ArrayList<>();
+        ArrayList<String> errornum2 = new ArrayList<>();
+        ArrayList<String> comments1 = new ArrayList<>();
+
 
         raw = new Scanner(new File("raw"));
-        while (raw.hasNext()) {
+        Scanner sc2 = new Scanner(new File("raw"));
+
+
+        while (sc2.hasNextLine()) {
+            String s[] =sc2.nextLine().split("\\t");
+            id1.add(s[0]);
+            fr1.add(s[1]);
+            errornum.add(s[2]);
+            if(!s[3].startsWith("\"")){
+                comments1.add(s[3]);
+                fr2.add(s[4]);
+                errornum2.add(s[5]);
+            }
+            else {
+                fr2.add(s[3]);
+                try {
+                    errornum2.add(s[4]);
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    errornum2.add("0");
+                }
+
+            }
+
+
+           // data.add(sc2.nextLine());
+
+
+        } int e =1;
+
+        double [] id2 = new double[id1.size()-1];
+        for (int i = 1; i <id1.size()-1 ; i++) {
+            id2[i] = Double.parseDouble(id1.get(i));
+         //   System.out.println(id2[i]);
+        }
+        ;
+
+        while (raw.hasNextLine()) {
+
+
             try {
+
 
                 left = raw.nextLine().replaceAll("[^0123456789.+]", "");
                 char p[] = left.toCharArray();
@@ -53,27 +104,22 @@ public class Main {
                         s = d.toString();
 
                     }
-
-
-                    System.out.print(t + " ");
-                    //  System.out.println(s);
-
                     b = Stream.of(s.split("\\+")).filter(x -> !x.isEmpty()).toArray(String[]::new);
 
-
-                } catch (IndexOutOfBoundsException e) {
+                } catch (IndexOutOfBoundsException b) {
                     raw.next();
                 }
-            } catch (NoSuchElementException e) {
+            } catch (NoSuchElementException c) {
                 System.out.println();
             }
 
             p = 0;
             numoferrors = 0;
 
-            fix.fix1();
+               fix.fix1();
+
+
         }
-
-
     }
+
 }
