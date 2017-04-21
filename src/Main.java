@@ -21,7 +21,7 @@ public class Main {
     public static String g;
     public static String y[];
     public static int t = 0;
-    public static double total = 0.0;
+    public static double fr = 0.0;
     public static String a = "";
     public static double c[];
     public static double p = 0.0;
@@ -31,7 +31,7 @@ public class Main {
 
     //
     public static void main(String[] args) throws IOException {
-        ArrayList<String> id1= new ArrayList<>();
+        ArrayList<String> id1 = new ArrayList<>();
         ArrayList<String> errornum = new ArrayList<>();
         ArrayList<String> fr2 = new ArrayList<>();
         ArrayList<String> fr1 = new ArrayList<>();
@@ -44,38 +44,44 @@ public class Main {
 
 
         while (sc2.hasNextLine()) {
-            String s[] =sc2.nextLine().split("\\t");
+            String s[] = sc2.nextLine().split("\\t");
             id1.add(s[0]);
             fr1.add(s[1]);
             errornum.add(s[2]);
-            if(!s[3].startsWith("\"")){
+            if (!s[3].startsWith("\"")) {
                 comments1.add(s[3]);
                 fr2.add(s[4]);
                 errornum2.add(s[5]);
-            }
-            else {
+            } else {
                 fr2.add(s[3]);
                 try {
                     errornum2.add(s[4]);
-                }
-                catch (ArrayIndexOutOfBoundsException e){
+                } catch (ArrayIndexOutOfBoundsException e) {
                     errornum2.add("0");
                 }
 
             }
 
 
-           // data.add(sc2.nextLine());
 
 
-        } int e =1;
 
-        double [] id2 = new double[id1.size()-1];
-        for (int i = 1; i <id1.size()-1 ; i++) {
-            id2[i] = Double.parseDouble(id1.get(i));
-         //   System.out.println(id2[i]);
         }
-        ;
+        int e = 1;
+
+        double[] id2 = new double[id1.size() - 1];
+        for (int i = 1; i < id1.size() - 1; i++) {
+            id2[i] = Double.parseDouble(id1.get(i));
+            // System.out.println(fr1.get(i));
+        }
+        String s = fr1.get(1);
+        s = s.replaceAll("[^0123456789.+]", "");
+        String y []= s.split("\\+");
+        int n = Integer.parseInt(errornum.get(1));
+        //System.out.println(y[1]);
+        fix.fix1(y,n);;
+        //System.out.println(y[2]);
+
 
         while (raw.hasNextLine()) {
 
@@ -116,7 +122,7 @@ public class Main {
             p = 0;
             numoferrors = 0;
 
-               fix.fix1();
+            // fix.fix1();
 
 
         }
