@@ -86,7 +86,20 @@ public class Main {
                 System.out.println();
             }//STILL HAVE TO FIGURE THIS CATCH STATEMENT OUT
             catch (NumberFormatException er) {
-                System.out.println(333333);
+                System.out.println(531824532);
+                String a = fr1.get(count);
+                a = a.substring(a.length() - 2, a.length() - 1);
+                a = fr1.get(count).replace(a, "");
+                a = a.replaceAll("[^0123456789.+]", "");
+                String p[] = a.split("\\+");
+                n = Double.parseDouble(errornum.get(count));
+                fix.getFR1(p, n);
+                two[count] = fix.totalList.get(count) - fix.q;
+                System.out.println("FR2: " + two[count]);
+                System.out.println("TOTAL " + fix.totalList.get(count));
+                System.out.println();
+
+
             }
             count++;
         }
