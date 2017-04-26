@@ -114,6 +114,7 @@ public class Main {
             String s = fr1.get(count);
             s = s.replaceAll("[^0123456789.+]", "");
             String y[] = s.split("\\+");
+
             n = Double.parseDouble(errornum.get(count));
             System.out.println(id1.get(count));
             try {
@@ -128,36 +129,58 @@ public class Main {
                 double fr1Avg = (fr1One + fr1Two) / 2;
 
                 double fr2One = fr2list.get(fr1cout);
-                double fr2Two = fr2list.get(fr1cout+1);
-                double fr2Avg = (fr2One+fr2Two)/2;
+                double fr2Two = fr2list.get(fr1cout + 1);
+                double fr2Avg = (fr2One + fr2Two) / 2;
 
 
                 two[count] = fix.totalList.get(count) - fix.q;
                 System.out.println("FR2: " + two[count]);
                 System.out.println("TOTAL " + fix.totalList.get(count));
-                System.out.println("Total average: " +totalAvg);
-                System.out.println("Free response 1 average: " +fr1Avg);
-                System.out.println("Free response 2 average: " +fr2Avg);
+                System.out.println("Total average: " + totalAvg);
+                System.out.println("Free response 1 average: " + fr1Avg);
+                System.out.println("Free response 2 average: " + fr2Avg);
                 System.out.println();
             }//STILL HAVE TO FIGURE THIS CATCH STATEMENT OUT
             catch (NumberFormatException er) {
                 System.out.println(531824532);
                 String a = fr1.get(count);
-                a = a.substring(a.length() - 2, a.length() - 1);
-                a = fr1.get(count).replace(a, "");
+                a = a.substring(0, a.length() - 2);
                 a = a.replaceAll("[^0123456789.+]", "");
                 String p[] = a.split("\\+");
                 n = Double.parseDouble(errornum.get(count));
+                for (int i = 0; i < p.length; i++) {
+                    if(p[i].equalsIgnoreCase("1.")){
+                        p[i] = "1";
+                    }
+                    else if(p[i].equalsIgnoreCase(".51")){
+                        p[i] = ".5";
+                    }
+                    //System.out.println(p[i]);
+                }
                 fix.getFR1(p, n);
+                double totalOne = fix.totalList.get(count);
+                double totalTwo = fix.totalList.get(count + 1);
+                double totalAvg = (totalOne + totalTwo) / 2;
+
+                double fr1One = fix.fr1list.get(fr1cout);
+                double fr1Two = fix.fr1list.get(fr1cout + 1);
+                double fr1Avg = (fr1One + fr1Two) / 2;
+
+                double fr2One = fr2list.get(fr1cout);
+                double fr2Two = fr2list.get(fr1cout + 1);
+                double fr2Avg = (fr2One + fr2Two) / 2;
                 two[count] = fix.totalList.get(count) - fix.q;
                 System.out.println("FR2: " + two[count]);
                 System.out.println("TOTAL " + fix.totalList.get(count));
+                System.out.println("Total average: " + totalAvg);
+                System.out.println("Free response 1 average: " + fr1Avg);
+                System.out.println("Free response 2 average: " + fr2Avg);
                 System.out.println();
 
 
             }
-            count +=2;
-            fr1cout +=2;
+            count++;
+            fr1cout++;
         }
     }
 }
