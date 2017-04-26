@@ -7,6 +7,8 @@ import java.util.InputMismatchException;
  */
 public class fix {
     public static ArrayList<Double> totalList = new ArrayList<>();
+    public static ArrayList<Double> fr1list = new ArrayList<>();
+
     public static studentObjs s;
     public static double q;
 
@@ -138,6 +140,20 @@ public class fix {
         q = Main.p - Main.sub;
         System.out.print("FR1: ");
         System.out.println(q);
+        fr1list.add(q);
+        Main.p = 0;
+    }
+    public static void getFR2(String[] dd, double n) {
+        Main.c = new double[dd.length];
+        Main.p = 0.0;
+        for (int i = 1; i < dd.length; i++) {
+            Main.c[i] = Double.parseDouble(dd[i]);
+            Main.p += Main.c[i];
+        }
+        Main.sub = n * .25;
+        q = Main.p - Main.sub;
+
+        fr1list.add(q);
         Main.p = 0;
     }
 
@@ -145,3 +161,5 @@ public class fix {
 
     }
 }
+
+
