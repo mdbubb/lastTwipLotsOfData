@@ -22,12 +22,14 @@ public class Main {
     public static double sub;
     public static Scanner raw;
     public static ArrayList<String> id1 = new ArrayList<>();
+    public static ArrayList<Double> fr2list = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         ArrayList<String> errornum = new ArrayList<>();
         ArrayList<String> fr1 = new ArrayList<>();
         raw = new Scanner(new File("raw"));
         Scanner sc2 = new Scanner(new File("raw"));
+        Scanner sc3 = new Scanner(new File("raw"));
         while (raw.hasNextLine()) {
             try {
                 left = raw.nextLine().replaceAll("[^0123456789.+]", "");
@@ -62,8 +64,8 @@ public class Main {
             fix.fix1();
 
         }
-        while (sc2.hasNextLine()) {
-            y = sc2.nextLine().split("\\t");
+        while (sc3.hasNextLine()) {
+            y = sc3.nextLine().split("\\t");
             id1.add(y[0]);
             fr1.add(y[1]);
             errornum.add(y[2]);
@@ -77,12 +79,65 @@ public class Main {
             s = s.replaceAll("[^0123456789.+]", "");
             String y[] = s.split("\\+");
             n = Double.parseDouble(errornum.get(count));
+            try {
+                fix.getFR2(y, n);
+                two[count] = fix.totalList.get(count) - fix.q;
+                fr2list.add(two[count]);
+
+
+            }//STILL HAVE TO FIGURE THIS CATCH STATEMENT OUT
+            catch (NumberFormatException er) {
+                String a = fr1.get(count);
+                a = a.substring(a.length() - 2, a.length() - 1);
+                a = fr1.get(count).replace(a, "");
+                a = a.replaceAll("[^0123456789.+]", "");
+                String p[] = a.split("\\+");
+                n = Double.parseDouble(errornum.get(count));
+                fix.getFR2(p, n);
+                two[count] = fix.totalList.get(count) - fix.q;
+                fr2list.add(two[count]);
+            }
+            count++;
+        }
+        while (sc2.hasNextLine()) {
+            y = sc2.nextLine().split("\\t");
+            id1.add(y[0]);
+            fr1.add(y[1]);
+            errornum.add(y[2]);
+        }
+        count = 1;
+        n = 0;
+        two = new double[fix.totalList.size()];
+        int fr1cout = 0;
+        while (count < id1.size()) {
+
+            String s = fr1.get(count);
+            s = s.replaceAll("[^0123456789.+]", "");
+            String y[] = s.split("\\+");
+            n = Double.parseDouble(errornum.get(count));
             System.out.println(id1.get(count));
             try {
                 fix.getFR1(y, n);
+
+                double totalOne = fix.totalList.get(count);
+                double totalTwo = fix.totalList.get(count + 1);
+                double totalAvg = (totalOne + totalTwo) / 2;
+
+                double fr1One = fix.fr1list.get(fr1cout);
+                double fr1Two = fix.fr1list.get(fr1cout + 1);
+                double fr1Avg = (fr1One + fr1Two) / 2;
+
+                double fr2One = fr2list.get(fr1cout);
+                double fr2Two = fr2list.get(fr1cout+1);
+                double fr2Avg = (fr2One+fr2Two)/2;
+
+
                 two[count] = fix.totalList.get(count) - fix.q;
                 System.out.println("FR2: " + two[count]);
                 System.out.println("TOTAL " + fix.totalList.get(count));
+                System.out.println("Total average: " +totalAvg);
+                System.out.println("Free response 1 average: " +fr1Avg);
+                System.out.println("Free response 2 average: " +fr2Avg);
                 System.out.println();
             }//STILL HAVE TO FIGURE THIS CATCH STATEMENT OUT
             catch (NumberFormatException er) {
@@ -101,7 +156,8 @@ public class Main {
 
 
             }
-            count++;
+            count +=2;
+            fr1cout +=2;
         }
     }
 }
