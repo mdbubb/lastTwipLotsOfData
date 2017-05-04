@@ -70,37 +70,35 @@ public class Main {
 
             id1.add(y[0]);
             fr1.add(y[1]);
-            errornum.add(y[2]);
-          //  System.out.println(fr1);
+            errornum.add(y[3]);
+            //  System.out.println(fr1);
         }
-        int count =1;
-      
-
-
-        for (int i = 0; i <fr1.size() ; i++) {
+        for (int i = 0; i < fr1.size(); i++) {
 
             System.out.println(fr1.get(i));
+            // System.out.println(errornum.get(i));
         }
 
 
-
-        /*
         int count = 1;
         double n = 0;
         double two[] = new double[fix.totalList.size()];
         while (count < id1.size()) {
 
             String s = fr1.get(count);
-            s = s.replaceAll("[^0123456789.+]", "");
+            s = s.replaceAll("[^0123456789.]", "");
             String y[] = s.split("\\+");
-            n = Double.parseDouble(errornum.get(count));
-            try {
-                fix.getFR2(y, n);
-                two[count] = fix.totalList.get(count) - fix.q;
-                fr2list.add(two[count]);
+//            n = Double.parseDouble(errornum.get(count));
 
+            fix.getFR2(y, n);
+            two[count] = fix.totalList.get(count) - fix.q;
+            fr2list.add(two[count]);
 
-            }//STILL HAVE TO FIGURE THIS CATCH STATEMENT OUT
+            System.out.println(y[0]);
+            count++;
+        }
+
+            /*
             catch (NumberFormatException er) {
                 String a = fr1.get(count);
                 a = a.substring(a.length() - 2, a.length() - 1);
