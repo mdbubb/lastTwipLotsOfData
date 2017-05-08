@@ -28,8 +28,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         ArrayList<String> errornum = new ArrayList<>();
+        ArrayList<Double> errornumdouble = new ArrayList<>();
         ArrayList<String> fr1 = new ArrayList<>();
-       ArrayList<Double> tot = new ArrayList<>();
+        ArrayList<Double> tot = new ArrayList<>();
         raw = new Scanner(new File("raw"));
         Scanner sc2 = new Scanner(new File("raw"));
         Scanner sc3 = new Scanner(new File("raw"));
@@ -67,7 +68,7 @@ public class Main {
             fix.fix1();
 
         }
-        // sc3.nextLine();
+         sc3.nextLine();
         while (sc3.hasNextLine()) {
             y = sc3.nextLine().split("\\t");
 
@@ -76,9 +77,22 @@ public class Main {
             errornum.add(y[3]);
             //  System.out.println(fr1);
         }
+        //sc3.nextLine();
         for (int i = 0; i < fr1.size(); i++) {
 
-            System.out.println(fr1.get(i));
+
+           try {
+               if(errornum.get(i).isEmpty()){
+                   errornumdouble.add(0.0);
+                   System.out.println(684654654);
+               }
+               errornumdouble.add(Double.parseDouble(errornum.get(i)));
+           }
+           catch (NumberFormatException t){
+               errornumdouble.add(0.0);
+           }
+
+            System.out.println(i + " " + fr1.get(i));
             // System.out.println(errornum.get(i));
         }
 
@@ -97,7 +111,7 @@ public class Main {
             two[count] = fix.totalList.get(count) - fix.q;
             fr2list.add(two[count]);
             double one[] = new double[7];
-           // double tot[] = new double[56];
+            // double tot[] = new double[56];
             double totalone = 0;
 
             String ji = y[0];
@@ -108,7 +122,6 @@ public class Main {
             while (hiya.hasNext()) {
                 String hi = hiya.next();
                 try {
-                    //  System.out.println(Double.parseDouble(hi)+"   " +count + "  " + a);
                     one[a] = Double.parseDouble(hi);
                     totalone += one[a];
                     System.out.println(one[a] + "  " + a + "  " + totalone);
@@ -121,7 +134,7 @@ public class Main {
 
             }
             tot.add(totalone);
-            System.out.println(tot.get(count-1));
+            System.out.println(tot.get(count - 1));
             count++;
 
 
@@ -131,6 +144,11 @@ public class Main {
             System.out.println(t.next());
 
 
+
+        }
+        System.out.println("HIIIIIIIIIIIIIIIIIII");
+        for (int i = 0; i <errornumdouble.size() +1; i++) {
+            System.out.println(i+" "+errornum.get(i));
         }
 
 
