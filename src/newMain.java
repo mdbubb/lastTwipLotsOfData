@@ -14,7 +14,6 @@ public class Main {
     public static String b[];
     public static String y[];
     public static String h[];
-    //public static double tot[];
     public static int t = 0;
     public static double fr = 0.0;
     public static String a = "";
@@ -24,13 +23,16 @@ public class Main {
     public static double sub;
     public static Scanner raw;
     public static ArrayList<String> id1 = new ArrayList<>();
+    public static ArrayList<String> id5 = new ArrayList<>();
     public static ArrayList<Double> fr2list = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
+
         ArrayList<String> errornum = new ArrayList<>();
         ArrayList<Double> errornumdouble = new ArrayList<>();
         ArrayList<String> fr1 = new ArrayList<>();
         ArrayList<Double> tot = new ArrayList<>();
+
         raw = new Scanner(new File("raw"));
         Scanner sc2 = new Scanner(new File("raw"));
         Scanner sc3 = new Scanner(new File("raw"));
@@ -43,8 +45,10 @@ public class Main {
                     if (Character.isDigit(p[0])) {
                         if (Character.isDigit(p[1])) {
                             id = (p[0] + "" + p[1]);
+                            id5.add(id);
                         } else {
                             id = (p[0] + "");
+                            id5.add(id);;
                         }
                     }
                     StringBuilder d = new StringBuilder(left);
@@ -65,10 +69,10 @@ public class Main {
 
             p = 0;
             numoferrors = 0;
-            fix.fix1();
+           fix.fix1();
 
         }
-         sc3.nextLine();
+        sc3.nextLine();
         while (sc3.hasNextLine()) {
             y = sc3.nextLine().split("\\t");
 
@@ -81,18 +85,18 @@ public class Main {
         for (int i = 0; i < fr1.size(); i++) {
 
 
-           try {
-               if(errornum.get(i).isEmpty()){
-                   errornumdouble.add(0.0);
-                   System.out.println(684654654);
-               }
-               errornumdouble.add(Double.parseDouble(errornum.get(i)));
-           }
-           catch (NumberFormatException t){
-               errornumdouble.add(0.0);
-           }
+            try {
+                if(!errornum.get(i).isEmpty()){
 
-            System.out.println(i + " " + fr1.get(i));
+                    errornumdouble.add(Double.parseDouble(errornum.get(i)));
+                }
+            }
+            catch (NumberFormatException t){
+                errornumdouble.add(0.0);
+            }
+
+
+           // System.out.println(i + " " + errornum.get(i));
             // System.out.println(errornum.get(i));
         }
 
@@ -118,13 +122,13 @@ public class Main {
             ji = ji.replaceAll("[^0123456789.]", " ");
             h = ji.split("\\\\s+");
             Scanner hiya = new Scanner(h[0]);
-            int a = 1;
+            int a = 0;
             while (hiya.hasNext()) {
                 String hi = hiya.next();
                 try {
                     one[a] = Double.parseDouble(hi);
                     totalone += one[a];
-                    System.out.println(one[a] + "  " + a + "  " + totalone);
+                  //  System.out.println(one[a] + "  " + a + "  " + totalone);
                     a++;
 
 
@@ -133,22 +137,19 @@ public class Main {
                 }
 
             }
+
             tot.add(totalone);
-            System.out.println(tot.get(count - 1));
+           // System.out.println(tot.get(count - 1));
             count++;
 
 
-            Scanner t = new Scanner(new File("test"));
-            t.next();
-            t.next();
-            System.out.println(t.next());
 
 
 
-        }
-        System.out.println("HIIIIIIIIIIIIIIIIIII");
-        for (int i = 0; i <errornumdouble.size() +1; i++) {
-            System.out.println(i+" "+errornum.get(i));
+        } tot.add(3.5);
+        for (int i = 0; i <errornumdouble.size(); i++) {
+            System.out.println(fix.fr1list.get(i));
+           // System.out.println(Main.id5.get(i)+" FR #1: "+(tot.get(i)-(errornumdouble.get(i)*.25)) + " FR #2: ");
         }
 
 
