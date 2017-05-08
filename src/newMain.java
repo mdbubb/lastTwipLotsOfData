@@ -13,6 +13,8 @@ public class Main {
     public static String s;
     public static String b[];
     public static String y[];
+    public static String h[];
+    //public static double tot[];
     public static int t = 0;
     public static double fr = 0.0;
     public static String a = "";
@@ -27,6 +29,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ArrayList<String> errornum = new ArrayList<>();
         ArrayList<String> fr1 = new ArrayList<>();
+       ArrayList<Double> tot = new ArrayList<>();
         raw = new Scanner(new File("raw"));
         Scanner sc2 = new Scanner(new File("raw"));
         Scanner sc3 = new Scanner(new File("raw"));
@@ -64,7 +67,7 @@ public class Main {
             fix.fix1();
 
         }
-        sc3.nextLine();
+        // sc3.nextLine();
         while (sc3.hasNextLine()) {
             y = sc3.nextLine().split("\\t");
 
@@ -86,17 +89,52 @@ public class Main {
         while (count < id1.size()) {
 
             String s = fr1.get(count);
-            s = s.replaceAll("[^0123456789.]", "");
+            s = s.replaceAll("[^0123456789.]", " ");
             String y[] = s.split("\\+");
 //            n = Double.parseDouble(errornum.get(count));
 
-            fix.getFR2(y, n);
+            // fix.getFR2(y, n);
             two[count] = fix.totalList.get(count) - fix.q;
             fr2list.add(two[count]);
+            double one[] = new double[7];
+           // double tot[] = new double[56];
+            double totalone = 0;
 
-            System.out.println(y[0]);
+            String ji = y[0];
+            ji = ji.replaceAll("[^0123456789.]", " ");
+            h = ji.split("\\\\s+");
+            Scanner hiya = new Scanner(h[0]);
+            int a = 1;
+            while (hiya.hasNext()) {
+                String hi = hiya.next();
+                try {
+                    //  System.out.println(Double.parseDouble(hi)+"   " +count + "  " + a);
+                    one[a] = Double.parseDouble(hi);
+                    totalone += one[a];
+                    System.out.println(one[a] + "  " + a + "  " + totalone);
+                    a++;
+
+
+                } catch (NumberFormatException e) {
+
+                }
+
+            }
+            tot.add(totalone);
+            System.out.println(tot.get(count-1));
             count++;
+
+
+            Scanner t = new Scanner(new File("test"));
+            t.next();
+            t.next();
+            System.out.println(t.next());
+
+
         }
+
+
+
 
             /*
             catch (NumberFormatException er) {
