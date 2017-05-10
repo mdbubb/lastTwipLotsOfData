@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.Stream;
+
 /**
  * Created by mdb17 on 4/12/2017.
  */
@@ -17,7 +18,7 @@ public class Main {
     public static double fr = 0.0;
     public static String a = "";
     public static double c[];
-   public static double p = 0.0;
+    public static double p = 0.0;
     public static double numoferrors = 0.0;
     public static double sub;
     public static Scanner raw;
@@ -66,14 +67,14 @@ public class Main {
             numoferrors = 0;
             fix.fix1();
         }
-       // sc3.nextLine();
+        // sc3.nextLine();
         while (sc3.hasNextLine()) {
             y = sc3.nextLine().split("\\t");
             id1.add(y[0]);
             fr1.add(y[1]);
             errornum.add(y[3]);
         }
-        for (int i = 0; i < fr1.size(); i++) {
+        for (int i = 1; i < fr1.size(); i++) {
             try {
                 if (!errornum.get(i).isEmpty()) {
 
@@ -103,7 +104,7 @@ public class Main {
                 try {
                     one[a] = Double.parseDouble(hi);
                     totalone += one[a];
-                     // System.out.println(one[a] + "  " + a + "  " + totalone);
+                    // System.out.println(one[a] + "  " + a + "  " + totalone);
                     a++;
                 } catch (NumberFormatException e) {
 
@@ -112,13 +113,21 @@ public class Main {
             tot.add(totalone);
             count++;
         }
-        for (int j = 0; j <id5.size() ; j++) {
-            System.out.println(id5.get(j));
+        double average = 0;
+        for (int j = 0; j < id5.size() - 1; j++) {
+            if (id5.get(j).equals(id5.get(j + 1))) {
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25)))+((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25))))/2;
+                System.out.println(id5.get(j) + " FR #1: " + ((tot.get(j)) - ((errornumdouble.get(j) * .25))) + "   FR# 2: " + ((fix.totalList.get(j)) - (tot.get(j)) - ((errornumdouble.get(j) * .25))));
+                System.out.println(id5.get(j + 1) + " FR #1: " + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25))) + "   FR# 2: " + ((fix.totalList.get(j + 1)) - (tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25))));
+                System.out.println(average);
+
+            }
+
         }
         tot.add(3.5);
-        for (int i = 0; i < errornumdouble.size()+1; i++) {
-            //System.out.println(errornumdouble.get(i));
-          //  System.out.println(id5.get(i) + " FR #1: " + ((tot.get(i)) - ((errornumdouble.get(i+1) * .25))) + "   FR# 2: " + ((fix.totalList.get(i)) - (tot.get(i)) - ((errornumdouble.get(i) * .25))));
+        for (int i = 0; i < errornumdouble.size() + 1; i++) {
+            // System.out.println(errornumdouble.get(i));
+            //  System.out.println(id5.get(i) + " FR #1: " + ((tot.get(i)) - ((errornumdouble.get(i+1) * .25))) + "   FR# 2: " + ((fix.totalList.get(i)) - (tot.get(i)) - ((errornumdouble.get(i) * .25))));
         }
     }
 }
