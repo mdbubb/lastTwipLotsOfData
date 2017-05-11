@@ -105,10 +105,71 @@ public class fix {
                     }
                     Main.p += Main.c[i];
                 }
+
+                if (Main.t==4){
+                    Main.numoferrors-=1;
+                }
+                else if (Main.t==7){
+                    Main.numoferrors+=1;
+                }
+                else if (Main.t==11){
+                    Main.numoferrors+=12;
+                }
+                else if (Main.t==14){
+                    Main.numoferrors+=1;
+                }
+                else if (Main.t==17){
+                    Main.numoferrors+=2;
+                }
+                else if (Main.t==20){
+                    Main.numoferrors+=3;
+                }
+                else if (Main.t==22){
+                    Main.numoferrors+=2;
+                }
+                else if (Main.t==25){
+                    Main.numoferrors+=1;
+                }
+                else if (Main.t==26){
+                    Main.numoferrors-=1;
+                }
+                else if (Main.t==28){
+                    Main.numoferrors+=1;
+                }
+                else if (Main.t==29){
+                    Main.numoferrors-=1;
+                }
+                else if (Main.t==33){
+                    Main.numoferrors-=4;
+                }
+                else if (Main.t==34){
+                    Main.numoferrors+=1;
+                }
+                else if (Main.t==35){
+                    Main.numoferrors-=2;
+                }
+                else if (Main.t==41){
+                    Main.numoferrors+=4;
+                }
+                else if (Main.t==42){
+                    Main.numoferrors-=1;
+                }
+                else if (Main.t==51){
+                    Main.numoferrors+=2;
+                }
+
+
+
+
+
+
+
+
                 Main.sub = Main.numoferrors * .25;
                 Main.fr = Main.p - Main.sub;
                 s = new studentObjs(Main.id, Main.fr);
                 totalList.add(Main.fr);
+
             } catch (InputMismatchException d) {
                 Main.raw.nextDouble();
             } catch (NumberFormatException l) {
