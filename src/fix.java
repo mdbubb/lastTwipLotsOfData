@@ -9,7 +9,7 @@ public class fix {
     public static ArrayList<Double> totalList = new ArrayList<>();
     public static ArrayList<Double> fr1list = new ArrayList<>();
 
-    public static studentObjs s;
+
     public static double q;
 
     public static void fix1() {
@@ -167,7 +167,6 @@ public class fix {
 
                 Main.sub = Main.numoferrors * .25;
                 Main.fr = Main.p - Main.sub;
-                s = new studentObjs(Main.id, Main.fr);
                 totalList.add(Main.fr);
 
             } catch (InputMismatchException d) {
