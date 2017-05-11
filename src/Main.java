@@ -27,7 +27,7 @@ public class Main {
     public static ArrayList<Double> fr2list = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        ArrayList<String> errornum = new ArrayList<>();
+        ArrayList<String> errornumstring = new ArrayList<>();
         ArrayList<Double> errornumdouble = new ArrayList<>();
         ArrayList<String> fr1 = new ArrayList<>();
         ArrayList<Double> tot = new ArrayList<>();
@@ -72,13 +72,13 @@ public class Main {
             y = sc3.nextLine().split("\\t");
             id1.add(y[0]);
             fr1.add(y[1]);
-            errornum.add(y[3]);
+            errornumstring.add(y[3]);
         }
         for (int i = 1; i < fr1.size(); i++) {
             try {
-                if (!errornum.get(i).isEmpty()) {
+                if (!errornumstring.get(i).isEmpty()) {
 
-                    errornumdouble.add(Double.parseDouble(errornum.get(i)));
+                    errornumdouble.add(Double.parseDouble(errornumstring.get(i)));
                 }
             } catch (NumberFormatException t) {
                 errornumdouble.add(0.0);
@@ -113,21 +113,42 @@ public class Main {
             tot.add(totalone);
             count++;
         }
+        fix.totalList.remove(0);
+
+
         double average = 0;
-        for (int j = 0; j < id5.size() - 1; j++) {
-            if (id5.get(j).equals(id5.get(j + 1))) {
-                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25)))+((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25))))/2;
-                System.out.println(id5.get(j) + " FR #1: " + ((tot.get(j)) - ((errornumdouble.get(j) * .25))) + "   FR# 2: " + ((fix.totalList.get(j)) - (tot.get(j)) - ((errornumdouble.get(j) * .25))));
-                System.out.println(id5.get(j + 1) + " FR #1: " + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25))) + "   FR# 2: " + ((fix.totalList.get(j + 1)) - (tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25))));
-                System.out.println(average);
+        double averagetwo = 0;
+        double averageTotal = 0;
+        int j = 0;
+        while (j < fix.totalList.size() ) {
+            if (id5.get(j).equals(id5.get(j+1))) {
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
+                averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
+                averagetwo = averageTotal - average;
+                System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo );
+                 id5.remove(j + 1);
+                System.out.println(fix.totalList.get(j));
+                System.out.println(fix.totalList.get(j+1));
+                fix.totalList.remove(j+1);
+            }
+            //System.out.print(j+"  ");
+            //System.out.println(id5.get(j));
+            else{
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
+                averageTotal = fix.totalList.get(j);
+                averagetwo = averageTotal -average;
+                System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
+                System.out.println(fix.totalList.get(j));
 
             }
 
+
+            j ++;
         }
         tot.add(3.5);
-        for (int i = 0; i < errornumdouble.size() + 1; i++) {
-            // System.out.println(errornumdouble.get(i));
-            //  System.out.println(id5.get(i) + " FR #1: " + ((tot.get(i)) - ((errornumdouble.get(i+1) * .25))) + "   FR# 2: " + ((fix.totalList.get(i)) - (tot.get(i)) - ((errornumdouble.get(i) * .25))));
-        }
+        /*FIX THIS BELOW
+        for (int i = 0; i < fix.totalList.size() ; i++) {
+            System.out.println(id5.get(i)+ "   "+fix.totalList.get(i));
+        }*/
     }
 }
