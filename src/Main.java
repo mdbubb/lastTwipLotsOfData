@@ -25,6 +25,7 @@ public class Main {
     public static ArrayList<String> id1 = new ArrayList<>();
     public static ArrayList<String> id5 = new ArrayList<>();
     public static ArrayList<Double> fr2list = new ArrayList<>();
+    public static studentObjs objs;
 
     public static void main(String[] args) throws IOException {
         ArrayList<String> errornumstring = new ArrayList<>();
@@ -121,16 +122,16 @@ public class Main {
                 double averagetwo = averageTotal - average;
                 System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
                 id5.remove(j + 1);
-             //   System.out.println(fix.totalList.get(j));
-               // System.out.println(fix.totalList.get(j + 1));
                 fix.totalList.remove(j + 1);
+                objs= new studentObjs(id5.get(j),averageTotal,average,averagetwo);
             }
             else{
                 double average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
                 double averageTotal = fix.totalList.get(j);
                 double averagetwo = averageTotal -average;
                 System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
-               
+                objs= new studentObjs(id5.get(j),averageTotal,average,averagetwo);
+
             }
             j ++;
         }
