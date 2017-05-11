@@ -25,7 +25,10 @@ public class Main {
     public static ArrayList<String> id1 = new ArrayList<>();
     public static ArrayList<String> id5 = new ArrayList<>();
     public static ArrayList<Double> fr2list = new ArrayList<>();
-    public static studentObjs objs;
+    public static studentobjs objs;
+    public static double average =0;
+    public static double averageTotal =0;
+    public static double averagetwo =0;
 
     public static void main(String[] args) throws IOException {
         ArrayList<String> errornumstring = new ArrayList<>();
@@ -117,24 +120,27 @@ public class Main {
         int j = 0;
         while (j < fix.totalList.size() ) {
             if (id5.get(j).equals(id5.get(j+1))) {
-                double average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
-                double averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
-                double averagetwo = averageTotal - average;
-                System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
+                 average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
+                 averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
+                 averagetwo = averageTotal - average;
+             //   System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
+
                 id5.remove(j + 1);
                 fix.totalList.remove(j + 1);
-                objs= new studentObjs(id5.get(j),averageTotal,average,averagetwo);
+                objs= new studentobjs(id5.get(j),averageTotal,average,averagetwo);
+                System.out.println(studentobjs.toStrings());
             }
             else{
-                double average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
-                double averageTotal = fix.totalList.get(j);
-                double averagetwo = averageTotal -average;
-                System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
-                objs= new studentObjs(id5.get(j),averageTotal,average,averagetwo);
-
+                 average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
+                 averageTotal = fix.totalList.get(j);
+                 averagetwo = averageTotal -average;
+               // System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
+                objs= new studentobjs(id5.get(j),averageTotal,average,averagetwo);
+                System.out.println(studentobjs.toStrings());
             }
             j ++;
         }
         tot.add(3.5);
+
     }
 }
