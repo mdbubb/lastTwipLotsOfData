@@ -97,25 +97,18 @@ public class fix {
                     } else if (Main.c[i] == 0.5121) {
                         Main.c[i] = 0.5;
                         Main.numoferrors += 2;
-                    } else if (Main.c[i] == .5 || Main.c[i] == 1.0) {
+                    }else if (Main.c[i] == 13203) {
+                        Main.c[i] = 1.0;
+                        Main.numoferrors += 3;
+                    }
+                    else if (Main.c[i] == .5 || Main.c[i] == 1.0) {
                     }
                     Main.p += Main.c[i];
-                    Main.sub = Main.numoferrors * .25;
                 }
+                Main.sub = Main.numoferrors * .25;
                 Main.fr = Main.p - Main.sub;
                 s = new studentObjs(Main.id, Main.fr);
                 totalList.add(Main.fr);
-                if (Main.t == 4) {
-                    Main.numoferrors -= 1;
-                } else if (Main.t == 8 || Main.t == 15 || Main.t == 26 || Main.t == 37) {
-                    Main.numoferrors += 1;
-                } else if (Main.t == 21) {
-                    Main.numoferrors += 3;
-                } else if (Main.t == 38) {
-                    Main.numoferrors -= 2;
-                } else if (Main.t == 27 || Main.t == 31 || Main.t == 32 || Main.t == 43 || Main.t == 45) {
-                    Main.numoferrors -= 1;
-                }
             } catch (InputMismatchException d) {
                 Main.raw.nextDouble();
             } catch (NumberFormatException l) {
@@ -127,38 +120,6 @@ public class fix {
         } catch (IndexOutOfBoundsException e) {
             Main.raw.nextLine();
         }
-    }
-
-    public static void getFR1(String[] dd, double n) {
-        Main.c = new double[dd.length];
-        Main.p = 0.0;
-        for (int i = 1; i < dd.length; i++) {
-            Main.c[i] = Double.parseDouble(dd[i]);
-            Main.p += Main.c[i];
-        }
-        Main.sub = n * .25;
-        q = Main.p - Main.sub;
-        System.out.print("FR1: ");
-        System.out.println(q);
-        fr1list.add(q);
-        Main.p = 0;
-    }
-    public static void getFR2(String[] dd, double n) {
-        Main.c = new double[dd.length];
-        Main.p = 0.0;
-        for (int i = 1; i < dd.length; i++) {
-            Main.c[i] = Double.parseDouble(dd[i]);
-            Main.p += Main.c[i];
-        }
-        Main.sub = n * .25;
-        q = Main.p - Main.sub;
-
-        fr1list.add(q);
-        Main.p = 0;
-    }
-
-    public static void getAverage() throws IOException {
-
     }
 }
 
