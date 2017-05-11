@@ -107,6 +107,7 @@ public class Main {
                 } catch (NumberFormatException e) {
 
                 }
+                //
             }
             tot.add(totalone);
             count++;
@@ -120,8 +121,8 @@ public class Main {
                 double averagetwo = averageTotal - average;
                 System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
                 id5.remove(j + 1);
-                System.out.println(fix.totalList.get(j));
-                System.out.println(fix.totalList.get(j + 1));
+             //   System.out.println(fix.totalList.get(j));
+               // System.out.println(fix.totalList.get(j + 1));
                 fix.totalList.remove(j + 1);
             }
             else{
@@ -129,14 +130,10 @@ public class Main {
                 double averageTotal = fix.totalList.get(j);
                 double averagetwo = averageTotal -average;
                 System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
-                System.out.println(fix.totalList.get(j));
+               
             }
             j ++;
         }
         tot.add(3.5);
-        /*FIX THIS BELOW
-        for (int i = 0; i < fix.totalList.size() ; i++) {
-            System.out.println(id5.get(i)+ "   "+fix.totalList.get(i));
-        }*/
     }
 }
