@@ -116,30 +116,6 @@ public class Main {
             tot.add(totalone);
             count++;
         }
-        fix.totalList.remove(0);
-        int j = 0;
-        while (j < fix.totalList.size()) {
-            if (id5.get(j).equals(id5.get(j + 1))) {
-                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
-                averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
-                averagetwo = averageTotal - average;
-                //   System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
-
-                id5.remove(j + 1);
-                fix.totalList.remove(j + 1);
-                objs = new studentobjs(id5.get(j), averageTotal, average, averagetwo);
-                System.out.println(studentobjs.toStrings());
-            } else {
-                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
-                averageTotal = fix.totalList.get(j);
-                averagetwo = averageTotal - average;
-                // System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
-                objs = new studentobjs(id5.get(j), averageTotal, average, averagetwo);
-                System.out.println(studentobjs.toStrings());
-            }
-            j++;
-        }
-        tot.add(3.5);
         Scanner names = new Scanner(new File("names.txt")).useDelimiter("\\t");
         ArrayList<String> fileNames = new ArrayList<>();
         ArrayList<String> fileID = new ArrayList<>();
@@ -156,10 +132,54 @@ public class Main {
             num = split[1].trim();
             fileID.add(num);
         }
-        for (int i = 0; i <fileNames.size() ; i++) {
-            System.out.println(fileNames.get(i) + ": "+ fileID.get(i) );
+
+        ArrayList<String> namestxt = new ArrayList<>();
+        ArrayList<Integer> newID = new ArrayList<>();
+        int i = 0;
+        int t = 0;
+        while (t < id5.size()) {
+            while (i < id5.size()) {
+                try {
+                    if (fileID.get(t).equals(id5.get(i))) {
+                        newID.add(Integer.parseInt(fileID.get(t)));
+                        namestxt.add(fileNames.get(t));
+                        // System.out.println(newID +" "+ namestxt);
+                        t++;
+                        i = 0;
+                    } else {
+                        i++;
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("hi");
+                }
+
+            }
+
         }
-       
+        fix.totalList.remove(0);
+        int j = 0;
+        while (j < fix.totalList.size()) {
+            if (id5.get(j).equals(id5.get(j + 1))) {
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
+                averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
+                averagetwo = averageTotal - average;
+                // System.out.println("Name: " + namestxt.get(j)+id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
+
+                id5.remove(j + 1);
+                fix.totalList.remove(j + 1);
+                objs = new studentobjs(namestxt.get(j), id5.get(j), averageTotal, average, averagetwo);
+                System.out.println(studentobjs.toStrings());
+            } else {
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
+                averageTotal = fix.totalList.get(j);
+                averagetwo = averageTotal - average;
+                //System.out.println("Name: " + namestxt.get(j)+id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
+                objs = new studentobjs(namestxt.get(j), id5.get(j), averageTotal, average, averagetwo);
+                System.out.println(studentobjs.toStrings());
+            }
+            j++;
+        }
+        tot.add(3.5);
 
 
     }
