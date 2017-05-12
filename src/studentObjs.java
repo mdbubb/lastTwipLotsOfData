@@ -3,14 +3,16 @@
  */
 public class studentobjs {
     public static String i;
-    public studentobjs(String id, double total, double one, double two) {
+    public static String n;
+    public studentobjs(String name, String id, double total, double one, double two) {
         i=id;
+        n=name;
 
     }
 
     public static String toStrings() {
 
-        return ("ID: " +studentobjs.i + "   Total: " + Main.averageTotal + "   FR#1: " + Main.average + "   FR:2 " + Main.averagetwo);
+        return ("Name: "+ studentobjs.n+"ID: " +studentobjs.i + "   Total: " + Main.averageTotal + "   FR#1: " + Main.average + "   FR:2 " + Main.averagetwo);
 
 
     }
