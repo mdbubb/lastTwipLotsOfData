@@ -150,36 +150,37 @@ public class Main {
                         i++;
                     }
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("hi");
+                    fix.totalList.remove(0);
+                    int j = 0;
+                    while (j < fix.totalList.size()) {
+                        if (id5.get(j).equals(id5.get(j + 1))) {
+                            average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
+                            averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
+                            averagetwo = averageTotal - average;
+                            // System.out.println("Name: " + namestxt.get(j)+id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
+
+                            id5.remove(j + 1);
+                            fix.totalList.remove(j + 1);
+                            objs = new studentobjs(namestxt.get(j), id5.get(j), averageTotal, average, averagetwo);
+                            System.out.println(studentobjs.toStrings());
+                        } else {
+                            average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
+                            averageTotal = fix.totalList.get(j);
+                            averagetwo = averageTotal - average;
+                            //System.out.println("Name: " + namestxt.get(j)+id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
+                            objs = new studentobjs(namestxt.get(j), id5.get(j), averageTotal, average, averagetwo);
+                            System.out.println(studentobjs.toStrings());
+                        }
+                        j++;
+                    }
+                    tot.add(3.5);
+                    break;
+
                 }
 
             }
 
         }
-        fix.totalList.remove(0);
-        int j = 0;
-        while (j < fix.totalList.size()) {
-            if (id5.get(j).equals(id5.get(j + 1))) {
-                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
-                averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
-                averagetwo = averageTotal - average;
-                // System.out.println("Name: " + namestxt.get(j)+id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
-
-                id5.remove(j + 1);
-                fix.totalList.remove(j + 1);
-                objs = new studentobjs(namestxt.get(j), id5.get(j), averageTotal, average, averagetwo);
-                System.out.println(studentobjs.toStrings());
-            } else {
-                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
-                averageTotal = fix.totalList.get(j);
-                averagetwo = averageTotal - average;
-                //System.out.println("Name: " + namestxt.get(j)+id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
-                objs = new studentobjs(namestxt.get(j), id5.get(j), averageTotal, average, averagetwo);
-                System.out.println(studentobjs.toStrings());
-            }
-            j++;
-        }
-        tot.add(3.5);
 
 
     }
