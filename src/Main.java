@@ -26,9 +26,9 @@ public class Main {
     public static ArrayList<String> id5 = new ArrayList<>();
     public static ArrayList<Double> fr2list = new ArrayList<>();
     public static studentobjs objs;
-    public static double average =0;
-    public static double averageTotal =0;
-    public static double averagetwo =0;
+    public static double average = 0;
+    public static double averageTotal = 0;
+    public static double averagetwo = 0;
 
     public static void main(String[] args) throws IOException {
         ArrayList<String> errornumstring = new ArrayList<>();
@@ -118,29 +118,49 @@ public class Main {
         }
         fix.totalList.remove(0);
         int j = 0;
-        while (j < fix.totalList.size() ) {
-            if (id5.get(j).equals(id5.get(j+1))) {
-                 average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
-                 averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
-                 averagetwo = averageTotal - average;
-             //   System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
+        while (j < fix.totalList.size()) {
+            if (id5.get(j).equals(id5.get(j + 1))) {
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))) + ((tot.get(j + 1)) - ((errornumdouble.get(j + 1) * .25)))) / 2;
+                averageTotal = (fix.totalList.get(j) + fix.totalList.get(j + 1)) / 2;
+                averagetwo = averageTotal - average;
+                //   System.out.println(id5.get(j) + " Average total: " + averageTotal + " FR #1: Average " + average + " FR #2: Average " + averagetwo);
 
                 id5.remove(j + 1);
                 fix.totalList.remove(j + 1);
-                objs= new studentobjs(id5.get(j),averageTotal,average,averagetwo);
+                objs = new studentobjs(id5.get(j), averageTotal, average, averagetwo);
+                System.out.println(studentobjs.toStrings());
+            } else {
+                average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
+                averageTotal = fix.totalList.get(j);
+                averagetwo = averageTotal - average;
+                // System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
+                objs = new studentobjs(id5.get(j), averageTotal, average, averagetwo);
                 System.out.println(studentobjs.toStrings());
             }
-            else{
-                 average = (((tot.get(j)) - ((errornumdouble.get(j) * .25))));
-                 averageTotal = fix.totalList.get(j);
-                 averagetwo = averageTotal -average;
-               // System.out.println(id5.get(j) + " Average total: " + averageTotal+ " FR #1: Average " + average + " FR #2: Average " + averagetwo );
-                objs= new studentobjs(id5.get(j),averageTotal,average,averagetwo);
-                System.out.println(studentobjs.toStrings());
-            }
-            j ++;
+            j++;
         }
         tot.add(3.5);
+        Scanner names = new Scanner(new File("names.txt")).useDelimiter("\\t");
+        ArrayList<String> fileNames = new ArrayList<>();
+        ArrayList<String> fileID = new ArrayList<>();
+
+
+        String name = "";
+        String num = "";
+        while (names.hasNextLine()) {
+            // read.add(names.nextLine());
+            String curline = names.nextLine();
+            String[] split = curline.split(" +");
+            name = split[0].trim();
+            fileNames.add(name);
+            num = split[1].trim();
+            fileID.add(num);
+        }
+        for (int i = 0; i <fileNames.size() ; i++) {
+            System.out.println(fileNames.get(i) + ": "+ fileID.get(i) );
+        }
+       
+
 
     }
 }
